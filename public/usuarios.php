@@ -1,5 +1,21 @@
+<?php
+include 'db.php';
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $name = $_POST['nome'];
+    $email = $_POST['email'];
+
+    $stmt = $conn->prepare("INSERT INTO usuarios (nome, email) VALUES (?, ?)");
+    $stmt->bind_param("ss", $name, $email);
+    if($stmt->execute()){
+        echo 'Usuário adicionado com sucesso!';
+    }else{
+        echo 'Erro ao cadastrar usuário.';
+    }
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
