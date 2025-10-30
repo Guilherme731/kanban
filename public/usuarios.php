@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 <body>
     <h1>Cadastrar Usuario</h1>
-    <form>
+    <form method="POST" action="">
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome" required>
         <label for="email">E-mail:</label>
