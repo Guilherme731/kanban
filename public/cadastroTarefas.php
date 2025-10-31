@@ -2,6 +2,23 @@
 include 'db.php';
 $sqlUsuarios = 'SELECT * FROM usuarios';
 $result = $conn->query($sqlUsuarios);
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $idUsuario = $_POST['usuario'];
+    $descricao = $_POST['descricao'];
+    $nomeSetor = $_POST['nomeSetor'];
+    $prioridade = $_POST['prioridade'];
+    $dataCadastro = date('Y') . '-' . date('m') . '-' . date('d');
+    $status = 'a fazer';
+
+    $stmt = $conn->prepare("INSERT INTO tarefas (idUsuario, descricao, nomeSetor, prioridade, dataCadastro, status) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssss", $idUsuario, $descricao, $nomeSetor, $prioridade, $dataCadastro, $status);
+    if($stmt->execute()){
+        echo 'Tarefa adicionada com sucesso!';
+    }else{
+        echo 'Erro ao cadastrar tarefa.';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -34,8 +51,6 @@ $result = $conn->query($sqlUsuarios);
             <option value="media">Média</option>
             <option value="baixa">Baixa</option>
         </select>
-        <label for="dataCadastro">Data de Cadastro:</label>
-        <input type="date" name="dataCadastro" id="dataCadastro" required>
         <input type="submit" value="Adicionar Tarefa">
     </form>
 </body>
