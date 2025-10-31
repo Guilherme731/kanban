@@ -1,6 +1,7 @@
 body{
     background-color: rgb(243, 243, 243);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
 }
 table {
     border-collapse: collapse;
@@ -35,7 +36,7 @@ th, td {
     font-size: 12px;
     margin-right: 4px;
 }
-a{
+.botaoKanban{
     text-decoration: none;
     color: white;
     background-color: #0000ff;
@@ -48,4 +49,56 @@ a{
 }
 .bg-vermelho{
     background-color: rgb(197, 2, 2);
+}
+h1{
+    text-align: center;
+    background-color: #0000ff;
+    color: aliceblue;
+    margin: 0;
+    padding: 10px 0;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    font-size: 17px;
+    margin-top: 10px;
+}
+.centralizar-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+form input{
+    margin-bottom: 10px;
+    height: 30px;
+    font-size: 17px;
+}
+form select{
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+#enviar{
+    background-color: #0000ff;
+    font-size: 17px;
+    padding: 5px;
+    color: aliceblue;
+    border: none;
+    border-radius: 10px;
+}
+#enviar:hover{
+    cursor: pointer;
+}
+.links{
+    background-color: rgb(168, 215, 255);
+    padding: 4px;
+    text-align: center;
+}
+.links a{
+    text-decoration: none;
+    margin-right: 15px;
+    margin-left: 15px;
+    color: #0000ff;
+    font-weight: 500;
 }
