@@ -1,12 +1,12 @@
 <?php
 include 'db.php';
-$sqlTarefasAFazer = "SELECT * FROM tarefas WHERE status = 'a fazer'";
+$sqlTarefasAFazer = "SELECT * FROM tarefas WHERE status = 'a fazer' ORDER BY prioridade DESC, dataCadastro DESC;";
 $resultAFazer = $conn->query($sqlTarefasAFazer);
 
-$sqlTarefasFazendo = "SELECT * FROM tarefas WHERE status = 'fazendo'";
+$sqlTarefasFazendo = "SELECT * FROM tarefas WHERE status = 'fazendo' ORDER BY prioridade DESC, dataCadastro DESC;";
 $resultFazendo = $conn->query($sqlTarefasFazendo);
 
-$sqlTarefasPronto = "SELECT * FROM tarefas WHERE status = 'pronto'";
+$sqlTarefasPronto = "SELECT * FROM tarefas WHERE status = 'pronto' ORDER BY prioridade DESC, dataCadastro DESC;";
 $resultPronto = $conn->query($sqlTarefasPronto);
 ?>
 
@@ -15,10 +15,11 @@ $resultPronto = $conn->query($sqlTarefasPronto);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
     <title>Lista de Tarefas</title>
 </head>
 <body>
-    <table>
+    <table border="1">
         <tr>
             <td><strong>A Fazer</strong></td>
             <td><strong>Fazendo</strong></td>
@@ -34,15 +35,15 @@ $resultPronto = $conn->query($sqlTarefasPronto);
                     $nomeUsuario = $resultUsuario->fetch_assoc();
                     echo "
                     <div class='card'>
-                        <span class='descricao'>" . $row['descricao'] . "</span> <br>
-                        <span class='usuario'>" . $nomeUsuario['nome'] . "</span>
-                        <span class='prioridade'> Prioridade: " . $row['prioridade'] . "</span> <br> 
-                        <span class='setor'>" . $row['nomeSetor'] . "</span> <br>
-                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=fazendo'>Mover para Fazendo</a> <br>
-                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=pronto'>Mover para Pronto</a> <br>
-                        <a href='editarTarefa.php?id=" . $row['id'] . "'>Editar Tarefa</a> <br>
-                        <a href='excluirTarefa.php?id=" . $row['id'] . "'>Excluir Tarefa</a> <br>
-                        <span class='data'>" . $row['dataCadastro'] . "</span>
+                        <div class='descricao'><span>" . $row['descricao'] . "</span></div> <br>
+                        <span class='usuario'>" . $nomeUsuario['nome'] . "</span> <br>
+                        <span class='prioridade'> Prioridade: <strong>" . $row['prioridade'] . "</strong></span> <br> 
+                        <span class='setor'>Setor: " . $row['nomeSetor'] . "</span> <br><br>
+                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=fazendo'>Mover para Fazendo</a> <div style='padding: 6px;'></div>
+                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=pronto'>Mover para Pronto</a> <div style='padding: 6px;'></div>
+                        <a href='editarTarefa.php?id=" . $row['id'] . "'>Editar Tarefa</a> <div style='padding: 6px;'></div>
+                        <a class='bg-vermelho' href='excluirTarefa.php?id=" . $row['id'] . "'>Excluir Tarefa</a> <br>
+                        <div class='data'><span>Criado em: " . $row['dataCadastro'] . "</span></div>
                     </div>
                     ";
                 }
@@ -57,15 +58,15 @@ $resultPronto = $conn->query($sqlTarefasPronto);
                     $nomeUsuario = $resultUsuario->fetch_assoc();
                     echo "
                     <div class='card'>
-                        <span class='descricao'>" . $row['descricao'] . "</span> <br>
-                        <span class='usuario'>" . $nomeUsuario['nome'] . "</span>
-                        <span class='prioridade'> Prioridade: " . $row['prioridade'] . "</span> <br> 
-                        <span class='setor'>" . $row['nomeSetor'] . "</span> <br>
-                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=fazendo'>Mover para Fazendo</a> <br>
-                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=pronto'>Mover para Pronto</a> <br>
-                        <a href='editarTarefa.php?id=" . $row['id'] . "'>Editar Tarefa</a> <br>
-                        <a href='excluirTarefa.php?id=" . $row['id'] . "'>Excluir Tarefa</a> <br>
-                        <span class='data'>" . $row['dataCadastro'] . "</span>
+                        <div class='descricao'><span>" . $row['descricao'] . "</span></div> <br>
+                        <span class='usuario'>" . $nomeUsuario['nome'] . "</span> <br>
+                        <span class='prioridade'> Prioridade: <strong>" . $row['prioridade'] . "</strong></span> <br> 
+                        <span class='setor'>Setor: " . $row['nomeSetor'] . "</span> <br><br>
+                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=fazendo'>Mover para Fazendo</a> <div style='padding: 6px;'></div>
+                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=pronto'>Mover para Pronto</a> <div style='padding: 6px;'></div>
+                        <a href='editarTarefa.php?id=" . $row['id'] . "'>Editar Tarefa</a> <div style='padding: 6px;'></div>
+                        <a class='bg-vermelho' href='excluirTarefa.php?id=" . $row['id'] . "'>Excluir Tarefa</a> <br>
+                        <div class='data'><span>Criado em: " . $row['dataCadastro'] . "</span></div>
                     </div>
                     ";
                 }
@@ -80,15 +81,15 @@ $resultPronto = $conn->query($sqlTarefasPronto);
                     $nomeUsuario = $resultUsuario->fetch_assoc();
                     echo "
                     <div class='card'>
-                        <span class='descricao'>" . $row['descricao'] . "</span> <br>
-                        <span class='usuario'>" . $nomeUsuario['nome'] . "</span>
-                        <span class='prioridade'> Prioridade: " . $row['prioridade'] . "</span> <br> 
-                        <span class='setor'>" . $row['nomeSetor'] . "</span> <br>
-                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=fazendo'>Mover para Fazendo</a> <br>
-                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=pronto'>Mover para Pronto</a> <br>
-                        <a href='editarTarefa.php?id=" . $row['id'] . "'>Editar Tarefa</a> <br>
-                        <a href='excluirTarefa.php?id=" . $row['id'] . "'>Excluir Tarefa</a> <br>
-                        <span class='data'>" . $row['dataCadastro'] . "</span>
+                        <div class='descricao'><span>" . $row['descricao'] . "</span></div> <br>
+                        <span class='usuario'>" . $nomeUsuario['nome'] . "</span> <br>
+                        <span class='prioridade'> Prioridade: <strong>" . $row['prioridade'] . "</strong></span> <br> 
+                        <span class='setor'>Setor: " . $row['nomeSetor'] . "</span> <br><br>
+                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=fazendo'>Mover para Fazendo</a> <div style='padding: 6px;'></div>
+                        <a href='moverTarefa.php?id=" . $row['id'] . "&status=pronto'>Mover para Pronto</a> <div style='padding: 6px;'></div>
+                        <a href='editarTarefa.php?id=" . $row['id'] . "'>Editar Tarefa</a> <div style='padding: 6px;'></div>
+                        <a class='bg-vermelho' href='excluirTarefa.php?id=" . $row['id'] . "'>Excluir Tarefa</a> <br>
+                        <div class='data'><span>Criado em: " . $row['dataCadastro'] . "</span></div>
                     </div>
                     ";
                 }

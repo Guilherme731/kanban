@@ -1,0 +1,47 @@
+body{
+    background-color: rgb(200, 200, 200);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 80%;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 3px solid #0000ff;
+    vertical-align: top;
+    
+}
+.card{
+    background-color: rgb(147, 147, 227);
+    border: solid 2px #0000ff;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    padding: 4px 8px;
+}
+.descricao{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.data{
+    text-align: right;
+    font-size: 12px;
+    margin-right: 4px;
+}
+a{
+    text-decoration: none;
+    color: white;
+    background-color: #0000ff;
+    margin: 3px;
+    padding: 3px;
+    margin-bottom: 20px;
+    border: solid 2px black;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.bg-vermelho{
+    background-color: rgb(197, 2, 2);
+}
