@@ -3,21 +3,44 @@ include 'db.php';
 $sqlUsuarios = 'SELECT * FROM usuarios';
 $result = $conn->query($sqlUsuarios);
 
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $sqlTarefa = "SELECT * FROM tarefas WHERE id = $id";
+    $resultTarefa = $conn->query($sqlTarefa);
+    $form = $resultTarefa->fetch_assoc();
+}
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $idUsuario = $_POST['usuario'];
-    $descricao = $_POST['descricao'];
-    $nomeSetor = $_POST['nomeSetor'];
-    $prioridade = $_POST['prioridade'];
-    $dataCadastro = date('Y') . '-' . date('m') . '-' . date('d');
-    $status = 'a fazer';
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $idUsuario = $_POST['usuario'];
+        $descricao = $_POST['descricao'];
+        $nomeSetor = $_POST['nomeSetor'];
+        $prioridade = $_POST['prioridade'];
 
-    $stmt = $conn->prepare("INSERT INTO tarefas (idUsuario, descricao, nomeSetor, prioridade, dataCadastro, status) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isssss", $idUsuario, $descricao, $nomeSetor, $prioridade, $dataCadastro, $status);
-    if($stmt->execute()){
-        echo 'Tarefa adicionada com sucesso!';
+        $stmt = $conn->prepare("UPDATE tarefas SET idUsuario = ?, descricao = ?, nomeSetor = ?, prioridade = ? WHERE id = ?");
+        $stmt->bind_param("isssi", $idUsuario, $descricao, $nomeSetor, $prioridade, $id);
+        if($stmt->execute()){
+            header('Location: kanban.php');
+        }else{
+            header('Location: kanban.php');
+        }
     }else{
-        echo 'Erro ao cadastrar tarefa.';
+        $idUsuario = $_POST['usuario'];
+        $descricao = $_POST['descricao'];
+        $nomeSetor = $_POST['nomeSetor'];
+        $prioridade = $_POST['prioridade'];
+        $dataCadastro = date('Y') . '-' . date('m') . '-' . date('d');
+        $status = 'a fazer';
+
+        $stmt = $conn->prepare("INSERT INTO tarefas (idUsuario, descricao, nomeSetor, prioridade, dataCadastro, status) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssss", $idUsuario, $descricao, $nomeSetor, $prioridade, $dataCadastro, $status);
+        if($stmt->execute()){
+            echo 'Tarefa adicionada com sucesso!';
+        }else{
+            echo 'Erro ao cadastrar tarefa.';
+        }
     }
+    
 }
 ?>
 <!DOCTYPE html>
@@ -35,21 +58,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <?php
             while ($row = $result->fetch_assoc()){
             ?>
-            <option value="<?=$row['id']?>"><?=$row['nome']?></option>
+            <option value="<?=$row['id']?>" <?php if (isset($_GET['id'])){if($form['idUsuario'] == $row['id']){echo 'selected';}} ?>><?=$row['nome']?></option>
             <?php
             }
             ?>
             
         </select>
         <label for="descricao">Descrição:</label>
-        <input type="text" name="descricao" id="descricao" required>
+        <input type="text" name="descricao" id="descricao" value="<?php if (isset($_GET['id'])){echo $form['descricao'];}?>" required>
         <label for="nomeSetor">Nome do Setor:</label>
-        <input type="text" name="nomeSetor" id="nomeSetor" required>
+        <input type="text" name="nomeSetor" id="nomeSetor" value="<?php if (isset($_GET['id'])){echo $form['nomeSetor'];}?>" required>
         <label for="prioridade">Prioridade:</label>
         <select name="prioridade" id="prioridade" required>
-            <option value="alta">Alta</option>
-            <option value="media">Média</option>
-            <option value="baixa">Baixa</option>
+            <option value="alta" <?php if (isset($_GET['id'])){if($form['prioridade'] == 'alta'){echo 'selected';}} ?>>Alta</option>
+            <option value="media" <?php if (isset($_GET['id'])){if($form['prioridade'] == 'media'){echo 'selected';}} ?>>Média</option>
+            <option value="baixa" <?php if (isset($_GET['id'])){if($form['prioridade'] == 'baixa'){echo 'selected';}} ?>>Baixa</option>
         </select>
         <input type="submit" value="<?php if (isset($_GET['id'])){echo'Editar';}else{echo'Adicionar';}?> Tarefa">
     </form>
