@@ -1,3 +1,8 @@
+<?php
+include 'db.php';
+$sqlUsuarios = 'SELECT * FROM usuarios';
+$result = $conn->query($sqlUsuarios);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,7 +15,14 @@
     <form action="" method="post">
         <label for="usuario">Usuário:</label>
         <select name="usuario" id="usuario" required>
-            <option value="idUsuario">Usuário Exemplo</option>
+            <?php
+            while ($row = $result->fetch_assoc()){
+            ?>
+            <option value="<?=$row['id']?>"><?=$row['nome']?></option>
+            <?php
+            }
+            ?>
+            
         </select>
         <label for="descricao">Descrição:</label>
         <input type="text" name="descricao" id="descricao" required>
