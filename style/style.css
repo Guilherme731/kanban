@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(200, 200, 200);
+    background-color: rgb(243, 243, 243);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 table {
@@ -13,6 +13,10 @@ th, td {
     border: 3px solid #0000ff;
     vertical-align: top;
     
+}
+.textoSuperior{
+    text-align: center;
+    font-size: 20px;
 }
 .card{
     background-color: rgb(147, 147, 227);

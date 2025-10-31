@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Cadastro de Tarefas</title>
 </head>
 <body>
-    <h1>Inserir uma Tarefa</h1>
+    <h1><?php if (isset($_GET['id'])){echo'Editar uma Tarefa';}else{echo'Inserir uma Tarefa';}?></h1>
     <form action="" method="post">
         <label for="usuario">Usuário:</label>
         <select name="usuario" id="usuario" required>
@@ -51,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <option value="media">Média</option>
             <option value="baixa">Baixa</option>
         </select>
-        <input type="submit" value="Adicionar Tarefa">
+        <input type="submit" value="<?php if (isset($_GET['id'])){echo'Editar';}else{echo'Adicionar';}?> Tarefa">
     </form>
 </body>
 </html>
