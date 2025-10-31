@@ -8,9 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare("INSERT INTO usuarios (nome, email) VALUES (?, ?)");
     $stmt->bind_param("ss", $name, $email);
     if ($stmt->execute()) {
-        echo 'Usuário adicionado com sucesso!';
+        echo"<div class='confirmar verde'>
+        <p>Usuário Cadastrado com Sucesso!</p>
+        <a href=''>Fechar</a>
+    </div>";
     } else {
-        echo 'Erro ao cadastrar usuário.';
+        echo"<div class='confirmar'>
+        <p>Erro ao cadastrar usuários</p>
+        <a href=''>Fechar</a>
+    </div>";
     }
 }
 ?>

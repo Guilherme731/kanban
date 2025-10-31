@@ -35,9 +35,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare("INSERT INTO tarefas (idUsuario, descricao, nomeSetor, prioridade, dataCadastro, status) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssss", $idUsuario, $descricao, $nomeSetor, $prioridade, $dataCadastro, $status);
         if ($stmt->execute()) {
-            echo 'Tarefa adicionada com sucesso!';
+            echo"<div class='confirmar verde'>
+        <p>Tarefa adicionada com Sucesso!</p>
+        <a href=''>Fechar</a>
+    </div>";
         } else {
-            echo 'Erro ao cadastrar tarefa.';
+            echo"<div class='confirmar'>
+        <p>Erro ao adicionar tarefa.</p>
+        <a href=''>Fechar</a>
+    </div>";
         }
     }
 }
