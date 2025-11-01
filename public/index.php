@@ -107,7 +107,7 @@ $resultPronto = $conn->query($sqlTarefasPronto);
     if(isset($_GET['excluir'])){
         echo"<div class='confirmar'>
         <p>Deseja realmente excluir a tarefa?</p>
-        <a href='excluirTarefa.php'>Excluir</a>
+        <a href='excluirTarefa.php?id=" . $_GET['excluir'] . "'>Excluir</a>
         <a href='index.php'>Cancelar</a>
     </div>";
     }
