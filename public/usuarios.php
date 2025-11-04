@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <h1>Cadastrar Usuario</h1>
     <div class="links">
-        <a href="index.php">Kanban</a>
-        <a href="cadastroTarefas.php">Cadastrar Tarefas</a>
+        <a href="../private/index.php">Kanban</a>
+        <a href="../private/cadastroTarefas.php">Cadastrar Tarefas</a>
     </div>
     <div class='centralizar-flex'>
         <form method="POST" action="">

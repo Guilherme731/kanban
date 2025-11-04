@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../public/db.php';
 
 $id = $_GET['id'];
 $status = $_GET['status'];

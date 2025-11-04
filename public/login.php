@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(password_verify($senha, $row['senha'])){
         $_SESSION["user_id"] = $row["id"];
         $_SESSION["user_email"] = $row["email"];
-        header('Location: index.php');
+        header('Location: ../private/index.php');
     }else{
         echo"<div class='confirmar'>
         <p>Usuario ou senha incorretos</p>

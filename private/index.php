@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../public/db.php';
 $sqlTarefasAFazer = "SELECT * FROM tarefas WHERE status = 'a fazer' ORDER BY prioridade DESC, dataCadastro DESC;";
 $resultAFazer = $conn->query($sqlTarefasAFazer);
 
@@ -22,7 +22,7 @@ $resultPronto = $conn->query($sqlTarefasPronto);
     <h1>Kanban</h1>
     <div class="links">
         <a href="cadastroTarefas.php">Cadastrar Tarefas</a>
-        <a href="usuarios.php">Cadastrar Usuários</a>
+        <a href="../public/usuarios.php">Cadastrar Usuários</a>
     </div>
     <table border="1">
         <tr>

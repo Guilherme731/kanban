@@ -1,6 +1,6 @@
 <?php
-include 'db.php';
-include '../private/boredAPI.php';
+include '../public/db.php';
+include 'boredAPI.php';
 $sqlUsuarios = 'SELECT * FROM usuarios';
 $result = $conn->query($sqlUsuarios);
 
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } ?></h1>
     <div class="links">
         <a href="index.php">Kanban</a>
-        <a href="usuarios.php">Cadastrar Usuários</a>
+        <a href="../public/usuarios.php">Cadastrar Usuários</a>
     </div>
     <div class="centralizar-flex">
         <form action="" method="post">
