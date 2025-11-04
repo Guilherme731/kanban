@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="links">
         <a href="index.php">Kanban</a>
         <a href="../public/usuarios.php">Cadastrar Usuários</a>
+        <a href="sair.php">Encerrar Sessão</a>
     </div>
     <div class="centralizar-flex">
         <form action="" method="post">

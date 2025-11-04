@@ -29,6 +29,7 @@ $resultPronto = $conn->query($sqlTarefasPronto);
     <div class="links">
         <a href="cadastroTarefas.php">Cadastrar Tarefas</a>
         <a href="../public/usuarios.php">Cadastrar Usuários</a>
+        <a href="sair.php">Encerrar Sessão</a>
     </div>
     <table border="1">
         <tr>
