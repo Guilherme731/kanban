@@ -1,5 +1,11 @@
 <?php
+session_start();
 include '../public/db.php';
+
+if (isset($_SESSION['email'])) {
+    header('location: ../public/login.php');
+}
+
 $sqlTarefasAFazer = "SELECT * FROM tarefas WHERE status = 'a fazer' ORDER BY prioridade DESC, dataCadastro DESC;";
 $resultAFazer = $conn->query($sqlTarefasAFazer);
 

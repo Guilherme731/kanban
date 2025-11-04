@@ -1,5 +1,10 @@
 <?php
+session_start();
 include '../public/db.php';
+
+if (isset($_SESSION['email'])) {
+    header('location: ../public/login.php');
+}
 
 $id = $_GET['id'];
 $status = $_GET['status'];

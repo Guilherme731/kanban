@@ -1,5 +1,10 @@
 <?php
+session_start();
 include '../public/db.php';
+
+if (isset($_SESSION['email'])) {
+    header('location: ../public/login.php');
+}
 include 'boredAPI.php';
 $sqlUsuarios = 'SELECT * FROM usuarios';
 $result = $conn->query($sqlUsuarios);
