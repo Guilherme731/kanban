@@ -1,23 +1,26 @@
 <?php
+session_start();
 include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['nome'];
     $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    $senha = $_POST['senha'];
 
-    $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $name, $email, $senha);
-    if ($stmt->execute()) {
-        echo"<div class='confirmar verde'>
-        <p>Usuário Cadastrado com Sucesso!</p>
-        <a href=''>Fechar</a>
-    </div>";
-    } else {
+    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+    if(password_verify($senha, $row['senha'])){
+        $_SESSION["user_id"] = $row["id"];
+        $_SESSION["user_email"] = $row["email"];
+        header('Location: index.php');
+    }else{
         echo"<div class='confirmar'>
-        <p>Erro ao cadastrar usuários</p>
+        <p>Usuario ou senha incorretos</p>
         <a href=''>Fechar</a>
-    </div>";
+        </div>";
     }
 }
 ?>
@@ -32,20 +35,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <h1>Cadastrar Usuario</h1>
+    <h1>Login</h1>
     <div class="links">
-        <a href="index.php">Kanban</a>
-        <a href="cadastroTarefas.php">Cadastrar Tarefas</a>
+        <a>Sistema de Gerenciamento de Tarefas</a>
     </div>
     <div class='centralizar-flex'>
         <form method="POST" action="">
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome" required>
             <label for="email">E-mail:</label>
             <input type="email" name="email" id="email" required>
             <label for="senha">Senha:</label>
             <input type="password" name="senha" id="senha" required>
-            <input type="submit" id="enviar" value="Cadastrar">
+            <input type="submit" id="enviar" value="Login">
         </form>
     </div>
 
