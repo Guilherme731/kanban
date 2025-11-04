@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+include '../private/boredAPI.php';
 $sqlUsuarios = 'SELECT * FROM usuarios';
 $result = $conn->query($sqlUsuarios);
 
@@ -88,6 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="descricao">Descrição:</label>
             <input type="text" name="descricao" id="descricao" value="<?php if (isset($_GET['id'])) {
                                                                             echo $form['descricao'];
+                                                                        } else{
+                                                                            echo obterSugestao();
                                                                         } ?>" required>
             <label for="nomeSetor">Nome do Setor:</label>
             <input type="text" name="nomeSetor" id="nomeSetor" value="<?php if (isset($_GET['id'])) {
