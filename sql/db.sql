@@ -20,10 +20,10 @@ CREATE TABLE tarefas(
     FOREIGN KEY (idUsuario) REFERENCES usuarios(id)
 );
 
-INSERT INTO usuarios (nome, email) VALUES
-('Ana Silva', 'ana.silva@empresa.com'),
-('Bruno Costa', 'bruno.costa@empresa.com'),
-('Carla Mendes', 'carla.mendes@empresa.com');
+INSERT INTO usuarios (nome, email, senha) VALUES
+('Ana Silva', 'ana.silva@empresa.com', '$2y$10$WGdTq.0xoaUlUoeauvKOFOlALdBY7g1kdgqsvMgg5rlzZpGEzT3yG'),
+('Bruno Costa', 'bruno.costa@empresa.com', '$2y$10$WGdTq.0xoaUlUoeauvKOFOlALdBY7g1kdgqsvMgg5rlzZpGEzT3yG'),
+('Carla Mendes', 'carla.mendes@empresa.com', '$2y$10$WGdTq.0xoaUlUoeauvKOFOlALdBY7g1kdgqsvMgg5rlzZpGEzT3yG');
 
 INSERT INTO tarefas (idUsuario, descricao, nomeSetor, prioridade, dataCadastro, status) VALUES
 (1, 'Atualizar documentação do sistema', 'TI', 'media', '2025-10-01', 'a fazer'),
